@@ -1,0 +1,5 @@
+backend_api.py 冒烟测试通过 (2026-11-17)
+- /health -> 200 {"status":"ok"}
+- /v1/models -> 200 {"id":"yiban-agent"}
+- uvicorn 启动正常，OpenAI 兼容层就绪
+- /v1/chat/completions 待填 API Key 建库后联调（依赖 YibanAgent）
