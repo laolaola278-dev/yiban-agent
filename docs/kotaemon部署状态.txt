@@ -1,0 +1,24 @@
+# kotaemon 前端部署完成 ✅ (2026-11-18 01:45 终版)
+
+## 运行验证
+- http://127.0.0.1:7860 服务就绪（CIM 常驻进程，HF_HUB_OFFLINE=1 跳过 HF 联网检查）
+- 首次登录账号：admin / admin（本地用户管理，可在页面右上角改密码）
+- 已登录主界面截图：docs\kotaemon主界面.png
+- 登录页截图：docs\kotaemon运行截图.png
+
+## 关键配置记录
+1. langchain 全家降级到 0.2.x 线（langchain-core 0.2.x）——修复 metaclass conflict
+2. 补装 cachetools（ktem 间接依赖）
+3. subst Y: = E:\hds(js)（绕开路径括号在 cmd 的解析坑；bat 内一律用 Y:\workspace\kotaemon）
+4. HF_HUB_OFFLINE=1 + TRANSFORMERS_OFFLINE=1（跳过 huggingface.co 连不通的重试卡死）
+5. uv pip 装 296 包 + 手动 curl 三个大 wheel（lancedb/pylance/llama-hub）--find-links 离线安装
+
+## 日常使用（三步）
+1. 双击 启动后端.bat（8010 网关，需 .env 已填 Key 且 ingest 已跑）
+2. 双击 启动前端.bat（7860 kotaemon，HF 离线模式）
+3. kotaemon 页面 Settings → OpenAI-compatible →
+   API Base: http://127.0.0.1:8010/v1 | Key: sk-local | Model: yiban-agent
+
+## 双通道知识库（答辩亮点）
+- 通道A：kotaemon File Collection 直接上传 data\raw 校规（它自带 RAG + PDF 高亮引用）
+- 通道B：走 8010 网关调自研 FAISS 管线（条款级切片 + 引用溯源 + 澄清 + 工具）
