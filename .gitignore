@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.zip
+data/corpus/
+ktem_app_data/
+docs/resources/competition-ppt/
+eval/*.pptx
+*.log

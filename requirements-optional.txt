@@ -1,0 +1,10 @@
+# 可选增强（答辩前按需安装，网络不好时先跳过，主程序会自动降级）
+# pip install -r requirements-optional.txt
+
+# 二阶段精排：提升引用命中率（会拉 torch，约 2GB，网络好时再装）
+FlagEmbedding>=1.2.0
+
+# RAG 四维评测指标（faithfulness / answer_relevancy / context_precision / context_recall）
+ragas>=0.2.0
+
+# 已有 python-pptx 在主依赖里（轻量，自动导出答辩页用）
